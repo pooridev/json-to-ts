@@ -11,7 +11,14 @@ const TSEditor = () => {
 
   return (
     <div className={styles.tsEditor}>
-      <EditorPanel readonly withFilePicker language='json' label='JSON' onChange={handleCodeChange} value={code} />
+      <EditorPanel
+        readonly
+        withFilePicker
+        language='typescript'
+        label='TypeScript'
+        onChange={handleCodeChange}
+        value={code}
+      />
     </div>
   );
 };
