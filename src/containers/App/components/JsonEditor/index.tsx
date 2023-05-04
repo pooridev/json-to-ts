@@ -1,5 +1,6 @@
 import EditorPanel from 'components/EditorPanel';
 import { useState } from 'react';
+import styles from './style.module.scss';
 
 const JSONEditor = () => {
   const [code, setCode] = useState('');
@@ -9,7 +10,7 @@ const JSONEditor = () => {
   };
 
   return (
-    <div>
+    <div className={styles.jsonEditor}>
       <EditorPanel withFilePicker language='json' label='JSON' onChange={handleCodeChange} value={code} />
     </div>
   );

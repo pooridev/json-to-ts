@@ -10,7 +10,13 @@ const EditorPanel = ({ language, onChange, value, readonly, withFilePicker, labe
   const filePickerRef = useRef<HTMLInputElement>(null);
 
   const extractCodeFromFile = (event: ChangeEvent<HTMLInputElement>) => {
-    onChange('Hi');
+    const fileReader = new FileReader();
+
+    fileReader.onload = function () {
+      onChange(fileReader.result as string);
+    };
+
+    fileReader.readAsText(event.target.files?.[0] as Blob);
   };
 
   const openFilePicker = () => {
@@ -22,7 +28,7 @@ const EditorPanel = ({ language, onChange, value, readonly, withFilePicker, labe
       <header className={styles.header}>
         <h4>{label}</h4>
         {withFilePicker && (
-          <div onClick={openFilePicker} className={styles.filePicker}>
+          <div title='convert via upload a file' onClick={openFilePicker} className={styles.filePicker}>
             <UploadIcon size={20} />
             <input ref={filePickerRef} type='file' onChange={extractCodeFromFile} />
           </div>
